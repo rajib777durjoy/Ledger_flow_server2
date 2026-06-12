@@ -18,12 +18,14 @@ const httpServer = createServer(app);
 // Create Socket.IO Server
 const io = new Server(httpServer, {
     cors: {
-        origin: "*",
+        origin:['https://ledger-flow-next-js-teamproject.onrender.com/','http://localhost:3000'],
         methods: ["GET", "POST"],
     },
 });
 
-app.use(cors());
+app.use(cors({
+    origin:['https://ledger-flow-next-js-teamproject.onrender.com/','http://localhost:3000']
+}));
 app.use(express.json());
 
 app.get("/api/get_customer_due/:id", async (req, res) => {
